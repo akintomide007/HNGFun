@@ -1,5 +1,21 @@
 <!doctype html>
 <html>
+<?php
+    require "db.php";
+		$query = $conn->query("SELECT * FROM secret_word");
+$result = $query->fetch(PDO::FETCH_ASSOC);
+$secret_word = $result['secret_word'];
+	
+?>
+<?php
+	$data = $conn->query("select *From secret_word LIMIT1");
+	$data = $data->fetch(PDO:: FETCH_OBJ);
+	$secret_word =  $data->secret_word;
+	
+	$result2 = $conn->query("select *From interns_data where username = 'Akintomide'");
+	$user = $result2->fetch(PDO:: FETCH_OBJ);
+	
+	?>
 <head>
 
 <meta charset="utf-8">
@@ -31,7 +47,7 @@ h2{
 	}
 	.profile {
 		box-shadow: 0 4px 8px 0 rgb(0, 0, 0, 0.2 );
-		max-width: 400px;
+		max-width: 500px;
 		margin: auto;
 		text-align: center;
 		}
@@ -82,9 +98,20 @@ h2{
 <div class="profile">
 <img src="https://res.cloudinary.com/akintomide/image/upload/v1523798928/michael.png" style="width: 100%">
 <!--<img src="michael.png" style="width: 100%">-->
-<h1>Adebile Akintomide</h1>
+<?php
+require 'db.php';
+$username = "Akintomide";
+$data = $conn->query("SELECT * FROM  interns_data WHERE username = '".$username."' ");
+$my_data = $data->fetch(PDO::FETCH_BOTH);
+$name = $my_data['name'];
+$img = $my_data['image_filename'];
+$username =$my_data['username'];
+?>
+
+<h1><?php echo $name;?></h1>
 <p class="title">Embedded Systems Designer</p>
 <p>C++ </p>
+
 <p>Front End Developper </p>
 <p class="title">HNGinternship</p>
 <p>HTML CSS </p>

@@ -2,7 +2,7 @@
 <html>
 <?php
     require "db.php";
-		$query = $conn->query("SELECT * FROM secret_word");
+		$query = $conn->query("SELECT * FROM secret_word where secret_word  = 'secret_word'");
 $result = $query->fetch(PDO::FETCH_ASSOC);
 $secret_word = $result['secret_word'];
 	
